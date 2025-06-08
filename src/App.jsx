@@ -30,7 +30,7 @@ export default function Portfolio() {
             <div className="text-left max-w-xl">
               <h1 className="text-4xl font-extrabold font-serif text-gray-900">Justine Kojo</h1>
               <p className="text-gray-600 text-lg mt-2 leading-snug">
-                Geomatics Engineer | GIS & RS Analyst 🗺️ | Cloud-based Geospatial Analyst 🌍 | Researcher
+                Geomatics Engineer | Cloud-based Geospatial Analyst 🌍 | Researcher
               </p>
               <div className="mt-4 text-blue-600 space-x-3 text-sm">
                 <a href="https://www.linkedin.com/in/justine-kojo" className="hover:underline">LinkedIn</a>
