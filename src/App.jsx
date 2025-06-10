@@ -4,8 +4,8 @@ import React from "react";
 
 export default function Portfolio() {
   return (
-    <div className="bg-gray-50 text-gray-800 font-sans">
-      <div className="max-w-6xl mx-auto px-6 py-12 space-y-16">
+    <div className="bg-gray-50 text-gray-800 font-roboto">
+      <div className="max-w-5xl mx-auto px-20 py-12 space-y-16">
 
         {/* Sticky Navbar */}
         <nav className="sticky top-0 z-50 bg-white shadow-sm py-4 px-6 border-b flex justify-between items-center">
@@ -21,11 +21,11 @@ export default function Portfolio() {
 
         {/* Header Section */}
         <header className="text-center">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
             <img
               src="/headshot.jpg"
               alt="Justine Kojo"
-              className="w-60 h-60 object-cover object-top rounded-full border-2 border-gray-300 shadow-md animate-fadeIn"
+              className="w-20 h-20 object-cover object-top rounded-full border-2 border-gray-300 shadow-md animate-fadeIn"
             />
             <div className="text-left max-w-xl">
               <h1 className="text-4xl font-extrabold font-serif text-gray-900">Justine Kojo</h1>
@@ -45,7 +45,7 @@ export default function Portfolio() {
         {/* About Section */}
         <section id="about">
           <h2 className="text-5x2 font-semibold mb-6">About Me</h2>
-          <p className="leading-relaxed text-gray-700 max-w-5x2 text-base text-justify">
+          <p className="leading-relaxed text-gray-700 max-w-5x1 text-base text-justify">
             I’m Justine Kojo—a geomatics engineer, researcher, and geospatial developer passionate about using data to decode how cities breathe, grow, and move. With a First Class degree from KNUST and an MPhil in Civil Engineering (Transport Studies) at UCT, I’ve spent the last few years exploring the intersections of transport equity, environmental monitoring, and urban planning across Africa.
             My work spans from conducting transport accessibility analyses and optimizations in Dar es Salaam to building environmental dashboards and evaluating land use change with satellite imagery and machine learning. I thrive in roles that merge technical depth—Python, QGIS, GEE, statistics—with a commitment to real-world impact.
             At heart, I’m a researcher driven by questions: How can satellite data illuminate transport inequality? How can cloud-based geospatial tools serve sustainable urban design? And how can we harness big data not just to describe cities—but to improve them?
@@ -166,7 +166,7 @@ export default function Portfolio() {
         <section id="projects">
           <h2 className="text-3xl font-semibold mb-4">Highlighted Projects</h2>
           <hr className="border-gray-300 mb-6" />
-          <div className="space-y-8">
+          <div className="space-y-2">
             {[
               ["Dar es Salaam BRT & Paratransit Integration", "Conducted GTFS dataset creation and accessibility analysis for the BRT and informal transport system in Dar es Salaam. Evaluated spatial equity in access to the CBD within 60 minutes, providing insight for multimodal policy recommendations.", "Python, QGIS, GTFS, Google Earth Engine"],
               ["Environmental Dashboard for Mining Impacts", "Designed a geospatial monitoring dashboard powered by Google Earth Engine to analyze vegetation loss, water surface changes, and urban encroachment in artisanal mining zones. Hosted using AWS and integrated with stakeholder-driven indicators.", "GEE, Dash, Python, AWS, PostgreSQL"],
@@ -175,7 +175,7 @@ export default function Portfolio() {
               ["GNSS Accuracy Evaluation", "Compared UAV, RTK, PPK, and Static GNSS methods across multiple terrain types. Analyzed the spatial accuracy of each method for use in infrastructure surveying and construction monitoring.", "AutoCAD Civil 3D, GNSS Survey Tools, QGIS"]
             ].map(([title, desc, tools], i) => (
               <div key={i} className="bg-grey p-6 rounded-lg shadow">
-                <h3 className="text-xl font-bold text-blue-700 mb-2">{i + 1}. {title}</h3>
+                <h3 className="text-xl font-bold text-red-700 mb-2">{i + 1}. {title}</h3>
                 <p className="text-gray-700 mb-1">{desc}</p>
                 <p className="text-sm italic text-gray-500">Tools: {tools}</p>
               </div>
