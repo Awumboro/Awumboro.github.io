@@ -52,22 +52,7 @@ export default function App() {
         </Link>
       </div>
     </nav>
-          
-          {/* Main Navigation
-          <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm py-4 px-6 border-b flex justify-between items-center mb-12 rounded-b-lg">
-            <Link to="/" className="text-lg font-bold tracking-tight hover:text-blue-600 transition-colors">
-              Justine Kojo
-            </Link>
-            <div className="space-x-6 text-sm font-medium">
-              <Link to="/" className="text-gray-600 hover:text-blue-600">Home</Link>
-              <Link to="/tutorials" className="text-gray-600 hover:text-blue-600">
-                Youtube
-              </Link>
-              <nav>
-              <Link to="/projects" className="text-gray-600 hover:text-blue-600">Projects</Link>
-            </nav>
-            </div>
-          </nav> */}
+        
 
           {/* Page Routing */}
           <main>

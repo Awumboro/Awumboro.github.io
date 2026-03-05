@@ -3,6 +3,10 @@
 // 📁 src/pages/Home.jsx
 import React from "react";
 import { projects } from "../projectsData"; // Ensure path matches your folder structure
+import { experiences } from "../experienceData";
+
+
+
 
 export default function Home() {
   return (
@@ -17,8 +21,9 @@ export default function Home() {
           />
           <div className="text-left max-w-xl">
             <h1 className="text-4xl font-extrabold font-serif text-gray-900">Justine Kojo</h1>
-            <p className="text-gray-600 text-lg mt-2 leading-snug">
-              Geomatics Engineer | Cloud-based Geospatial Analyst 🌍 | Researcher
+            <p className="text-gray-600  mt-2 leading-snug">
+              {/* Geomatics Engineer | Cloud-based Geospatial Analyst 🌍 | Researcher */}
+              Geomatics Engineer | Geospatial Data Scientist | Urban Systems Researcher
             </p>
             <div className="mt-4 text-blue-600 flex flex-wrap gap-3 text-sm font-medium">
                <a href="https://scholar.google.com/citations?user=9iKGu0sAAAAJ&hl=en&oi=ao" className="hover:underline">Google Scholar</a>
@@ -29,23 +34,62 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Subtle Identity */}
+    <div className="pt-4 flex flex-wrap justify-center gap-x-8 gap-y-4 text-xs font-bold uppercase tracking-widest text-gray-400">
+      <div className="flex items-center gap-2">
+        <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+        Data
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+        Intelligence
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+        Impact
+      </div>
+    </div>
+        
       </header>
 
-      {/* About Section */}
-        <section id="about">
-        <h2 className="text-1xl font-semibold mb-6">About Me</h2>
-        <p className="leading-relaxed text-gray-700 max-w-5xl text-base text-justify">
-        I am Justine Kojo, a geomatics engineer and geospatial data analyst working at the intersection of urban systems, remote sensing, and data science. My work focuses on understanding how cities move, how infrastructure performs under stress, and how spatial data can support better planning and policy decisions.
+      
+    
+    {/* About Section */}
+<section id="about" className="max-w-3xl mx-auto py-1">
+  <div className="space-y-4">
+    
+    {/* Section Header */}
+    <div className="flex items-center gap-6">
+      <h2 className="text-2xl font-bold text-gray-900 tracking-tight">About</h2>
+      <div className="h-px flex-1 bg-gray-200"></div>
+    </div>
 
-I hold a First Class degree in Geomatics Engineering from KNUST and recently completed an MPhil in Civil Engineering (Transport Studies) at the University of Cape Town. My research explores the integration of formal and informal transport systems in African cities, using spatial analytics and network modeling to understand accessibility, system efficiency, and equity.
+    {/* Narrative Flow */}
+    <div className="text-lg text-gray-700 leading-relaxed space-y-6 font-light">
+      <p>
+        I am <span className="text-gray-900 font-medium">Justine Kojo</span>, a geomatics engineer and geospatial analyst working at the intersection of urban systems, Earth Observation, and data science. My work focuses on understanding how cities function, how infrastructure systems perform under stress, and how spatial data can support better planning and policy decisions in rapidly growing urban environments.
+      </p>
 
-Across my work I combine satellite imagery, geospatial analysis, and computational methods to build practical tools and insights. I have worked on transport accessibility analysis in Dar es Salaam, environmental monitoring dashboards using Google Earth Engine, and land-use change modeling using machine learning.
+      <p>
+        Currently, I am pursuing a PhD in Civil Engineering (Transport Studies) at the <span className="text-gray-900">University of Cape Town</span> as a <span className="text-gray-600">Google PhD Fellow</span>. My research focuses on developing graph-based machine learning approaches to analyze and predict urban transport resilience in data-scarce African cities.
+        I use spatial analytics, network analysis, and computational modeling to study accessibility, system efficiency, and equity in urban mobility. 
 
-Technically, my work sits at the intersection of GIS, remote sensing, and data science. I build analytical pipelines using Python, Google Earth Engine, and spatial databases to extract meaningful insights from complex geospatial datasets.
+      </p>
+   
 
-Whether in research or applied projects, my goal is the same: translate spatial data into clear evidence that supports better infrastructure decisions, stronger environmental monitoring, and more equitable urban systems.
-                    </p>
-    </section>
+      <p>
+        Across both research and applied projects, I combine satellite imagery, geospatial analysis, and statistical modeling to extract meaningful insights from complex spatial data. My work has included transport accessibility analysis in Dar es Salaam, regional Earth Observation analysis on deforestation and water security in West Africa, and the development of spatial analytics tools for environmental monitoring and infrastructure decision-making.
+
+        Technically, my work sits at the intersection of GIS, remote sensing, and data science. I build analytical workflows using Python, Google Earth Engine, and spatial databases to process large geospatial datasets and translate them into clear, decision-relevant evidence.
+      </p>
+
+ 
+    </div>
+
+    
+  </div>
+</section>
 
       
        {/* Education Section */}
@@ -87,17 +131,40 @@ Whether in research or applied projects, my goal is the same: translate spatial 
 
         
         {/* Experience Section */}
-        <section id="experience">
-          <h2 className="text-3xl font-semibold mb-4">Professional Experience</h2>
-          <hr className="border-gray-300 mb-4" />
-          <ul className="space-y-3 text-gray-700">
-            <li><strong>Pre-doctoral Research Associate</strong> – JPAL, Uganda (Nov 2024 – Present)</li>
-            <li><strong>GIS & Remote Sensing Officer</strong> – Rainforest Builder, Ghana (Jul 2024 – Dec 2024)</li>
-            <li><strong>Geospatial Developer</strong> – VarianceLabs, Australia (Jan 2023 – Present)</li>
-            <li><strong>STT-GIS Analyst</strong> – World Bank Group, Tanzania (Sep 2022 – Sep 2023)</li>
-            <li><strong>Research & Teaching Assistant</strong> – KNUST, Ghana (2021 – 2022)</li>
-          </ul>
-        </section>
+      <section id="experience" className="animate-fadeIn">
+        <div className="flex items-center gap-6 mb-10">
+          <h2 className="text-2xl font-bold text-gray-900 tracking-tight">Applied Research & Professional Experience</h2>
+          <div className="h-px flex-1 bg-gray-200"></div>
+        </div>
+
+        <div className="space-y-10">
+          {experiences.map((exp, index) => (
+            <div key={index} className="relative pl-0 md:pl-8 group">
+              {/* Subtle Timeline Vertical Line */}
+              <div className="hidden md:block absolute left-0 top-2 bottom-0 w-px bg-gray-200 group-hover:bg-blue-600 transition-colors"></div>
+              
+              <div className="flex flex-col md:flex-row md:justify-between md:items-baseline gap-1">
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                  {exp.role}
+                </h3>
+                <span className="text-sm font-semibold text-gray-400 tabular-nums">
+                  {exp.period}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2 text-sm font-medium text-blue-600 mb-3">
+                <span>{exp.company}</span>
+                <span className="text-gray-300">•</span>
+                <span className="text-gray-500 font-normal">{exp.location}</span>
+              </div>
+
+              <p className="text-gray-600 leading-relaxed text-sm text-justify">
+                {exp.description} (<a style={{color: "#4c58c9ff", fontStyle: "italic", fontWeight: "bold"} } href={exp.url} target="_blank" rel="noopener noreferrer">Read more</a>)
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
 
         {/* Research & Publications */}
         <section id="publications">
