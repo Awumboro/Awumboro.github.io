@@ -1,13 +1,6 @@
-// /** @type {import('tailwindcss').Config} */
-// export default {
-//   content: [],
-//   theme: {
-//     extend: {},
-//   },
-//   plugins: [],
-// }
-
+/** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: "class",
     content: [
         "./index.html",
         "./src/**/*.{js,ts,jsx,tsx}",
@@ -15,8 +8,17 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Inter', 'sans-serif'],
+                sans: ['Inter', 'system-ui', 'sans-serif'],
                 display: ['Playfair Display', 'serif'],
+            },
+            keyframes: {
+                fadeIn: {
+                    '0%': { opacity: '0', transform: 'translateY(8px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+            },
+            animation: {
+                fadeIn: 'fadeIn 0.4s ease-out forwards',
             },
         },
     },

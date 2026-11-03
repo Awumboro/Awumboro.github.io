@@ -1,10 +1,18 @@
-
 // 📁 src/projectsDetailedData.js
+
+export const projectCategories = [
+  "All",
+  "Earth Observation",
+  "Transport Systems",
+  "Cloud & Dashboards",
+  "Coastal & Environmental"
+];
 
 export const detailedProjects = [
   {
     id: "wateraid-west-africa",
     title: "West Africa Deforestation & Water Security Analysis",
+    category: "Earth Observation",
     description:
       "A multi-country Earth Observation project assessing deforestation, freshwater extent, and water quality risks across Ghana, Nigeria, and Niger.",
     fullDetails:
@@ -16,13 +24,14 @@ export const detailedProjects = [
       "/projects/wateraid-3.png"
     ],
     links: {
-      github: "https://github.com/Awumboro"
+      github: "https://github.com/Awumboro",
+      report: "https://washmatters.wateraid.org/sites/g/files/jkxoof256/files/2025-11/Roots-rivers-how-deforestation-affects-freshwater-access.pdf"
     }
   },
-
   {
     id: "brt-integration",
     title: "Dar es Salaam BRT & Paratransit Integration",
+    category: "Transport Systems",
     description:
       "A transport systems project focused on accessibility, multimodal integration, and spatial equity in the Dar es Salaam public transport network.",
     fullDetails:
@@ -40,6 +49,7 @@ export const detailedProjects = [
   {
     id: "mining-dashboard",
     title: "Environmental Monitoring Dashboard for Mining Impacts",
+    category: "Cloud & Dashboards",
     description:
       "A cloud-based geospatial dashboard for tracking vegetation, soil, water, and land cover change in mining landscapes.",
     fullDetails:
@@ -57,6 +67,7 @@ export const detailedProjects = [
   {
     id: "dodoma-dist-nmt",
     title: "Dodoma Transport Accessibility & NMT Planning",
+    category: "Transport Systems",
     description:
       "A policy-facing transport analysis evaluating accessibility gains from road upgrades and a proposed non-motorized transport network in Dodoma.",
     fullDetails:
@@ -74,6 +85,7 @@ export const detailedProjects = [
   {
     id: "upper-denkyira-lulc",
     title: "Land Use Change & 2030 Prediction in Upper Denkyira",
+    category: "Earth Observation",
     description:
       "A long-term land use and land cover change analysis tracking environmental transformation in a mining-affected district in Ghana.",
     fullDetails:
@@ -91,6 +103,7 @@ export const detailedProjects = [
   {
     id: "nzema-shoreline",
     title: "Shoreline Detection & Coastal Land Use Change",
+    category: "Coastal & Environmental",
     description:
       "A coastal geospatial analysis project examining shoreline change, erosion patterns, and land use transitions in Nzema East Municipality.",
     fullDetails:
@@ -105,15 +118,15 @@ export const detailedProjects = [
       github: "https://github.com/Awumboro"
     }
   },
-
   {
     id: "others",
-    title: "Other Projects",
+    title: "Multispectral & Infrastructure Mapping Portfolio",
+    category: "Earth Observation",
     description:
-      "A collection of additional geospatial projects covering topics like deforestation monitoring, urban growth analysis, and infrastructure mapping across various contexts.",
+      "A collection of additional geospatial projects covering deforestation monitoring, urban growth analysis, and infrastructure mapping.",
     fullDetails:
-      "This section includes a variety of geospatial analyses and applications, such as deforestation monitoring in tropical regions, urban growth analysis in rapidly developing cities, infrastructure mapping for transport planning, and environmental change detection in sensitive ecosystems. Each project applies a combination of remote sensing, spatial analysis, machine learning, and GIS techniques to address specific research questions and real-world challenges.",
-    tools: [ "OSM", "QGIS", "ArcGIS Pro"],
+      "This collection includes a variety of geospatial analyses and applications, such as deforestation monitoring in tropical regions, urban growth analysis in rapidly developing cities, infrastructure mapping for transport planning, and environmental change detection in sensitive ecosystems using remote sensing and GIS techniques.",
+    tools: ["OSM", "QGIS", "ArcGIS Pro", "Python"],
     images: [
       "/projects/other-1.png",
       "/projects/other-2.png",
@@ -123,5 +136,4 @@ export const detailedProjects = [
       github: "https://github.com/Awumboro"
     }
   }
-
 ];
