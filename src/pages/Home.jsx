@@ -1,25 +1,26 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { projects } from "../projectsData";
 import { experiences } from "../experienceData";
 import BibtexModal from "../components/BibtexModal";
 import ImageLightbox from "../components/ImageLightbox";
+import CollapsibleSection from "../components/CollapsibleSection";
 import {
   BookOpen,
   Mail,
   Check,
-  Copy,
   ExternalLink,
   GraduationCap,
   Briefcase,
   Layers,
   ArrowRight,
   FileText,
-  Award,
   Sparkles,
   MapPin,
   Calendar,
-  Quote
+  Quote,
+  ChevronsUpDown,
+  FolderGit2
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon, YoutubeIcon, ScholarIcon } from "../components/SocialIcons";
 
@@ -28,6 +29,44 @@ export default function Home() {
   const [activeSkillCategory, setActiveSkillCategory] = useState("All");
   const [citationPaper, setCitationPaper] = useState(null);
   const [lightboxImg, setLightboxImg] = useState({ isOpen: false, src: "", title: "" });
+
+  const location = useLocation();
+
+  // Collapsible section state (Compact by default, About open)
+  const [sections, setSections] = useState({
+    about: true,
+    education: false,
+    experience: false,
+    publications: false,
+    skills: false,
+    projects: false
+  });
+
+  // Automatically open section if matching hash is in URL
+  useEffect(() => {
+    if (location.hash) {
+      const sectionKey = location.hash.replace("#", "");
+      setSections((prev) => (sectionKey in prev ? { ...prev, [sectionKey]: true } : prev));
+    }
+  }, [location.hash]);
+
+  const toggleSection = (key) => {
+    setSections((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const areAllExpanded = Object.values(sections).every(Boolean);
+
+  const toggleAll = () => {
+    const nextState = !areAllExpanded;
+    setSections({
+      about: nextState,
+      education: nextState,
+      experience: nextState,
+      publications: nextState,
+      skills: nextState,
+      projects: nextState
+    });
+  };
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("justine.jkojo@gmail.com");
@@ -122,7 +161,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="space-y-20 animate-fadeIn">
+    <div className="space-y-16 animate-fadeIn">
       {/* Hero / Identity Section */}
       <header className="relative pt-4 pb-2">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
@@ -141,7 +180,7 @@ export default function Home() {
             {/* Fellowship Status Pill */}
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200/80 dark:border-blue-900/60 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-              <span>Google PhD Fellow • Transport Systems</span>
+              <span>Google PhD Fellow • Transport Studies</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-zinc-100 font-serif tracking-tight">
@@ -219,33 +258,51 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Identity Pillars */}
-        <div className="pt-8 flex flex-wrap justify-center gap-x-10 gap-y-3 text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-zinc-500">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-            Data Analytics
+        {/* Quick Highlights Dashboard Pill Row */}
+        <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+          <div className="p-3 bg-white dark:bg-zinc-900/60 border border-slate-200/90 dark:border-zinc-800 rounded-xl shadow-xs">
+            <div className="text-lg font-bold text-blue-600 dark:text-blue-400">Google PhD</div>
+            <div className="text-[11px] text-slate-500 dark:text-zinc-400 font-medium">Fellow (2026–2029)</div>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-indigo-600"></span>
-            Spatial Intelligence
+          <div className="p-3 bg-white dark:bg-zinc-900/60 border border-slate-200/90 dark:border-zinc-800 rounded-xl shadow-xs">
+            <div className="text-lg font-bold text-slate-900 dark:text-zinc-100">6 Roles</div>
+            <div className="text-[11px] text-slate-500 dark:text-zinc-400 font-medium">WaterAid, J-PAL, World Bank</div>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-sky-500"></span>
-            Policy Impact
+          <div className="p-3 bg-white dark:bg-zinc-900/60 border border-slate-200/90 dark:border-zinc-800 rounded-xl shadow-xs">
+            <div className="text-lg font-bold text-slate-900 dark:text-zinc-100">3 Papers</div>
+            <div className="text-[11px] text-slate-500 dark:text-zinc-400 font-medium">SATC 2025 & Preprints</div>
+          </div>
+          <div className="p-3 bg-white dark:bg-zinc-900/60 border border-slate-200/90 dark:border-zinc-800 rounded-xl shadow-xs">
+            <div className="text-lg font-bold text-red-600 dark:text-red-400">Pro Geomatics</div>
+            <div className="text-[11px] text-slate-500 dark:text-zinc-400 font-medium">Video Educator</div>
           </div>
         </div>
       </header>
 
-      {/* About Section */}
-      <section id="about" className="space-y-5">
-        <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-zinc-100 tracking-tight flex items-center gap-2">
-            <span className="w-3 h-1 bg-blue-600 rounded-full"></span>
-            About Me
-          </h2>
-          <div className="h-px flex-1 bg-slate-200 dark:bg-zinc-800"></div>
+      {/* Global Compact / Expand Control Bar */}
+      <div className="flex items-center justify-between py-2.5 px-4 bg-slate-100/80 dark:bg-zinc-900/80 rounded-2xl border border-slate-200 dark:border-zinc-800/80">
+        <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-zinc-400">
+          <span className="font-semibold text-slate-900 dark:text-zinc-200">Page Navigation:</span>
+          <span>Click any section header below to expand/collapse</span>
         </div>
+        <button
+          onClick={toggleAll}
+          className="flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-bold text-blue-600 dark:text-blue-400 bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 hover:shadow-xs transition-all"
+        >
+          <ChevronsUpDown className="w-3.5 h-3.5" />
+          {areAllExpanded ? "Collapse All" : "Expand All"}
+        </button>
+      </div>
 
+      {/* About Section */}
+      <CollapsibleSection
+        id="about"
+        icon={<Sparkles className="w-5 h-5" />}
+        title="About Me"
+        badge="Bio & Research Focus"
+        isOpen={sections.about}
+        onToggle={() => toggleSection("about")}
+      >
         <div className="bg-white dark:bg-zinc-900/60 border border-slate-200/90 dark:border-zinc-800 p-6 sm:p-8 rounded-2xl shadow-sm text-slate-700 dark:text-zinc-300 leading-relaxed text-sm sm:text-base space-y-4">
           <p>
             I am <strong className="text-slate-900 dark:text-white">Justine Kojo Awumboro</strong>, a geomatics engineer and geospatial analyst working at the intersection of urban systems, Earth Observation, and data science. My research explores how cities function, how infrastructure systems perform under stress, and how spatial data can support evidence-based planning and policy decisions in rapidly growing African cities.
@@ -261,18 +318,17 @@ export default function Home() {
             Across both research and applied consulting projects, I combine satellite imagery, geospatial analysis, and statistical modeling to extract actionable insights. My portfolio spans regional Earth Observation analyses for WaterAid in West Africa, transport accessibility modeling for the World Bank in Dar es Salaam, and cloud geospatial dashboard development.
           </p>
         </div>
-      </section>
+      </CollapsibleSection>
 
       {/* Education Section */}
-      <section id="education" className="space-y-6">
-        <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-zinc-100 tracking-tight flex items-center gap-2">
-            <GraduationCap className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-            Education
-          </h2>
-          <div className="h-px flex-1 bg-slate-200 dark:bg-zinc-800"></div>
-        </div>
-
+      <CollapsibleSection
+        id="education"
+        icon={<GraduationCap className="w-5 h-5" />}
+        title="Education"
+        badge="3 Degrees • UCT & KNUST"
+        isOpen={sections.education}
+        onToggle={() => toggleSection("education")}
+      >
         <div className="grid grid-cols-1 gap-5">
           {/* PhD */}
           <div className="bg-white dark:bg-zinc-900/60 border-l-4 border-l-blue-600 border border-slate-200/90 dark:border-zinc-800 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
@@ -349,18 +405,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </CollapsibleSection>
 
       {/* Applied Research & Professional Experience */}
-      <section id="experience" className="space-y-6">
-        <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-zinc-100 tracking-tight flex items-center gap-2">
-            <Briefcase className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-            Applied Research & Professional Experience
-          </h2>
-          <div className="h-px flex-1 bg-slate-200 dark:bg-zinc-800"></div>
-        </div>
-
+      <CollapsibleSection
+        id="experience"
+        icon={<Briefcase className="w-5 h-5" />}
+        title="Applied Research & Professional Experience"
+        badge="6 Roles • WaterAid, J-PAL, World Bank"
+        isOpen={sections.experience}
+        onToggle={() => toggleSection("experience")}
+      >
         <div className="relative pl-4 sm:pl-8 space-y-8 before:absolute before:left-1 sm:before:left-3 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200 dark:before:bg-zinc-800">
           {experiences.map((exp, index) => (
             <div key={index} className="relative group">
@@ -404,18 +459,17 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </section>
+      </CollapsibleSection>
 
       {/* Research & Publications */}
-      <section id="publications" className="space-y-6">
-        <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-zinc-100 tracking-tight flex items-center gap-2">
-            <BookOpen className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-            Research & Publications
-          </h2>
-          <div className="h-px flex-1 bg-slate-200 dark:bg-zinc-800"></div>
-        </div>
-
+      <CollapsibleSection
+        id="publications"
+        icon={<BookOpen className="w-5 h-5" />}
+        title="Research & Publications"
+        badge="3 Papers • SATC 2025 & Preprints"
+        isOpen={sections.publications}
+        onToggle={() => toggleSection("publications")}
+      >
         <div className="space-y-4">
           {publications.map((pub) => (
             <div
@@ -466,19 +520,18 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </section>
+      </CollapsibleSection>
 
       {/* Interactive Skills Matrix */}
-      <section id="skills" className="space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-zinc-100 tracking-tight flex items-center gap-2">
-              <Layers className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-              Technical Competencies & Skills
-            </h2>
-          </div>
-
-          {/* Filter tabs */}
+      <CollapsibleSection
+        id="skills"
+        icon={<Layers className="w-5 h-5" />}
+        title="Technical Competencies & Skills"
+        badge="24+ Tools Across 6 Domains"
+        isOpen={sections.skills}
+        onToggle={() => toggleSection("skills")}
+      >
+        <div className="space-y-6">
           <div className="flex flex-wrap gap-1.5">
             {skillCategories.map((cat) => (
               <button
@@ -494,46 +547,46 @@ export default function Home() {
               </button>
             ))}
           </div>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filteredSkills.map((group, i) => (
-            <div
-              key={i}
-              className="bg-white dark:bg-zinc-900/60 border border-slate-200/90 dark:border-zinc-800 p-5 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                  {group.category}
-                </span>
-                <h3 className="font-bold text-slate-900 dark:text-zinc-100 text-base mt-1 mb-3">
-                  {group.title}
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  {group.skills.map((skill, j) => (
-                    <span
-                      key={j}
-                      className="px-2.5 py-1 bg-slate-50 dark:bg-zinc-800 border border-slate-200/80 dark:border-zinc-700/60 text-slate-700 dark:text-zinc-300 rounded-lg text-xs font-medium"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {filteredSkills.map((group, i) => (
+              <div
+                key={i}
+                className="bg-white dark:bg-zinc-900/60 border border-slate-200/90 dark:border-zinc-800 p-5 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                    {group.category}
+                  </span>
+                  <h3 className="font-bold text-slate-900 dark:text-zinc-100 text-base mt-1 mb-3">
+                    {group.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {group.skills.map((skill, j) => (
+                      <span
+                        key={j}
+                        className="px-2.5 py-1 bg-slate-50 dark:bg-zinc-800 border border-slate-200/80 dark:border-zinc-700/60 text-slate-700 dark:text-zinc-300 rounded-lg text-xs font-medium"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </section>
+      </CollapsibleSection>
 
       {/* Highlighted Projects Showcase */}
-      <section id="projects" className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-zinc-100 tracking-tight flex items-center gap-2">
-              <span className="w-3 h-1 bg-blue-600 rounded-full"></span>
-              Featured Projects
-            </h2>
-          </div>
+      <CollapsibleSection
+        id="projects"
+        icon={<FolderGit2 className="w-5 h-5" />}
+        title="Featured Projects"
+        badge="4 Highlighted Projects"
+        isOpen={sections.projects}
+        onToggle={() => toggleSection("projects")}
+        action={
           <Link
             to="/projects"
             className="text-xs sm:text-sm font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 group"
@@ -541,8 +594,8 @@ export default function Home() {
             <span>View All Projects</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
-        </div>
-
+        }
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((proj, idx) => (
             <div
@@ -598,7 +651,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </section>
+      </CollapsibleSection>
 
       {/* BibTeX Modal */}
       <BibtexModal
