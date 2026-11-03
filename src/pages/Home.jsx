@@ -24,7 +24,12 @@ export default function Home() {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [activeSkillCategory, setActiveSkillCategory] = useState("All");
   const [citationPaper, setCitationPaper] = useState(null);
-  const [lightboxImg, setLightboxImg] = useState({ isOpen: false, src: "", title: "" });
+  const [lightboxState, setLightboxState] = useState({
+    isOpen: false,
+    images: [],
+    currentIndex: 0,
+    title: ""
+  });
 
   const location = useLocation();
 
@@ -250,26 +255,6 @@ export default function Home() {
                 YouTube
               </a>
             </div>
-          </div>
-        </div>
-
-        {/* Quick Highlights Dashboard Row */}
-        <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-          <div className="p-3 bg-white dark:bg-zinc-900/60 border border-slate-200/90 dark:border-zinc-800 rounded-xl shadow-xs">
-            <div className="text-lg font-bold text-blue-600 dark:text-blue-400">Google PhD</div>
-            <div className="text-[11px] text-slate-500 dark:text-zinc-400 font-medium">Fellow (2026–2029)</div>
-          </div>
-          <div className="p-3 bg-white dark:bg-zinc-900/60 border border-slate-200/90 dark:border-zinc-800 rounded-xl shadow-xs">
-            <div className="text-lg font-bold text-slate-900 dark:text-zinc-100">6 Roles</div>
-            <div className="text-[11px] text-slate-500 dark:text-zinc-400 font-medium">WaterAid, J-PAL, World Bank</div>
-          </div>
-          <div className="p-3 bg-white dark:bg-zinc-900/60 border border-slate-200/90 dark:border-zinc-800 rounded-xl shadow-xs">
-            <div className="text-lg font-bold text-slate-900 dark:text-zinc-100">3 Papers</div>
-            <div className="text-[11px] text-slate-500 dark:text-zinc-400 font-medium">SATC 2025 & Preprints</div>
-          </div>
-          <div className="p-3 bg-white dark:bg-zinc-900/60 border border-slate-200/90 dark:border-zinc-800 rounded-xl shadow-xs">
-            <div className="text-lg font-bold text-red-600 dark:text-red-400">Pro Geomatics</div>
-            <div className="text-[11px] text-slate-500 dark:text-zinc-400 font-medium">Video Educator</div>
           </div>
         </div>
       </header>
@@ -629,11 +614,12 @@ export default function Home() {
                   <div>
                     {proj.image && (
                   <div
-                    className="relative h-44 overflow-hidden bg-slate-900 cursor-pointer"
+                    className="relative h-48 overflow-hidden bg-slate-900 cursor-pointer group"
                     onClick={() =>
-                      setLightboxImg({
+                      setLightboxState({
                         isOpen: true,
-                        src: proj.image,
+                        images: [proj.image],
+                        currentIndex: 0,
                         title: proj.title
                       })
                     }
@@ -696,11 +682,14 @@ export default function Home() {
 
       {/* Image Lightbox */}
       <ImageLightbox
-        isOpen={lightboxImg.isOpen}
-        images={[lightboxImg.src]}
-        currentIndex={0}
-        title={lightboxImg.title}
-        onClose={() => setLightboxImg({ isOpen: false, src: "", title: "" })}
+        isOpen={lightboxState.isOpen}
+        images={lightboxState.images}
+        currentIndex={lightboxState.currentIndex}
+        title={lightboxState.title}
+        onClose={() => setLightboxState((prev) => ({ ...prev, isOpen: false }))}
+        onIndexChange={(idx) =>
+          setLightboxState((prev) => ({ ...prev, currentIndex: idx }))
+        }
       />
     </div>
   );

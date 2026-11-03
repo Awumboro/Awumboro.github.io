@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import { X, Check, Copy, Quote } from "lucide-react";
 
 export default function BibtexModal({ isOpen, onClose, paper }) {
@@ -12,9 +13,9 @@ export default function BibtexModal({ isOpen, onClose, paper }) {
     setTimeout(() => setCopiedFormat(null), 2000);
   };
 
-  return (
+  const modalContent = (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fadeIn"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
       onClick={onClose}
     >
       <div
@@ -92,4 +93,8 @@ export default function BibtexModal({ isOpen, onClose, paper }) {
       </div>
     </div>
   );
+
+  return typeof document !== "undefined"
+    ? createPortal(modalContent, document.body)
+    : null;
 }
