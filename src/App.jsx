@@ -14,7 +14,7 @@ export default function App() {
       <Router>
         <ScrollToTop />
         <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 text-slate-800 dark:text-zinc-100 font-sans transition-colors duration-200 selection:bg-blue-600 selection:text-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-12 py-6 sm:py-10 flex flex-col min-h-screen justify-between">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-10 flex flex-col min-h-screen justify-between">
             {/* Top Navigation Bar */}
             <Navbar />
 
