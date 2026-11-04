@@ -169,9 +169,9 @@ export default function Home() {
           <div className="relative group shrink-0">
             <div className="absolute -inset-1 bg-gradient-to-tr from-blue-600 via-indigo-500 to-sky-400 rounded-full blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
             <img
-              src="/headshot.jpg"
+              src="/profile.png"
               alt="Justine Kojo Awumboro"
-              className="relative w-32 h-32 md:w-36 md:h-36 object-cover object-top rounded-full border-2 border-white dark:border-zinc-900 shadow-xl"
+              className="relative w-32 h-32 md:w-36 md:h-36 object-cover object-center rounded-full border-2 border-white dark:border-zinc-900 shadow-xl"
             />
           </div>
 
